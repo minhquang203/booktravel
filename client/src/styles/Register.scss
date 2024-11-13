@@ -6,36 +6,44 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: $background-gradient;
-  font-family: $font-primary;
+  background: var(--background-gradient);
+  font-family: var(--font-primary);
+  padding: 1rem;
 
   &__content {
-    background: $form-background;
-    padding: 2.5rem;
-    border-radius: $border-radius-large;
-    box-shadow: $box-shadow-large;
-    max-width: 380px;
+    background: var(--form-background);
+    padding: 3rem 2.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
     width: 100%;
     text-align: center;
-
     &__form {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.5rem;
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: var(--text-color);
+      }
 
       input {
         padding: 1rem;
-        border: 1px solid $input-border-color;
-        border-radius: $border-radius;
+        border: 1px solid var(--input-border-color);
+        border-radius: 0.3rem;
         font-size: 1rem;
-        transition: all 0.3s ease;
+        color: var(--text-color);
+        background-color: var(--input-background);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
         &:focus {
-          border-color: $input-focus-border;
-          box-shadow: 0 0 8px rgba($input-focus-border, 0.3);
+          border-color: var(--input-focus-border);
+          box-shadow: 0 0 8px rgba(var(--input-focus-border), 0.3);
           outline: none;
         }
+  
 
         &::placeholder {
           color: #aaa;
@@ -44,18 +52,18 @@
 
       button {
         padding: 1rem;
-        background: $button-color;
-        color: #ffffff;
+        background: var(--button-color);
+        color: #222;
         font-weight: bold;
         font-size: 1.1rem;
         border: none;
-        border-radius: $border-radius;
+        border-radius: 0.3rem;
         cursor: pointer;
         transition: background-color 0.3s, transform 0.2s ease;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 
         &:hover {
-          background-color: $button-hover;
+          background-color: var(--button-hover);
           transform: translateY(-2px);
           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
@@ -70,13 +78,13 @@
     a {
       display: inline-block;
       margin-top: 1rem;
-      color: $primary-color;
+      color: var(--link-color);
       text-decoration: none;
       font-size: 0.9rem;
       transition: color 0.3s ease, transform 0.2s;
 
       &:hover {
-        color: $primary-hover;
+        color: var(--link-hover);
         transform: scale(1.05);
       }
     }

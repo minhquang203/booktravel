@@ -68,6 +68,7 @@ const RegisterPage = () => {
     <div className="register">
       <div className="register__content">
         <form className="register__content__form" onSubmit={handleSubmit}>
+        <h2>Đăng Ký</h2>
           <input
             placeholder="Họ"
             name="firstName"

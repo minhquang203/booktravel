@@ -6,36 +6,16 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch("http://localhost:3002/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (response.ok) {
-        const loggedInData = await response.json();
-        console.log("Đăng nhập thành công:", loggedInData);
-        // Redirect or save token here if needed
-      } else {
-        const errorData = await response.json();
-        setErrorMessage(errorData.message || "Đăng nhập thất bại.");
-      }
-    } catch (error) {
-      console.error("lỗi trong quá trình đăng nhập :", error);
-      setErrorMessage("có lỗi xảy ra trong quá trình đăng nhập .");
-    }
+    // Handle login logic here
   };
 
   return (
     <div className="login">
-      <div className="login_content">
-        <form className="login_content_form" onSubmit={handleSubmit}>
+      <div className="login__content">
+        <form className="login__form" onSubmit={handleSubmit}>
+          <h2>Đăng nhập</h2>
           <input
             type="email"
             placeholder="Email"
@@ -50,10 +30,10 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-          <button type="submit">Đăng nhập</button>
+          {errorMessage && <p className="login__error">{errorMessage}</p>}
+          <button type="submit">Login</button>
+          <a href="/register">Don't have an account? Register here</a>
         </form>
-        <a href="/register">Không có tài khoản? Đăng ký tại đây</a>
       </div>
     </div>
   );
