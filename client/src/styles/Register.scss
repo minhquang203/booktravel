@@ -1,6 +1,7 @@
 @import "../styles/breakpoints.scss";
 @import "../styles/variable.scss";
 
+
 .register {
   display: flex;
   justify-content: center;
@@ -62,11 +63,11 @@
         transition: background-color 0.3s, transform 0.2s ease;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 
-        &:hover {
-          background-color: var(--button-hover);
-          transform: translateY(-2px);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
+      &:hover {
+        background-color: var(--button-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      } 
 
         &:active {
           transform: translateY(1px);
@@ -78,13 +79,13 @@
     a {
       display: inline-block;
       margin-top: 1rem;
-      color: var(--link-color);
+      color: $primary-color;
       text-decoration: none;
       font-size: 0.9rem;
       transition: color 0.3s ease, transform 0.2s;
 
       &:hover {
-        color: var(--link-hover);
+        color: $primary-hover;
         transform: scale(1.05);
       }
     }

@@ -1,14 +1,52 @@
+// LoginPage.js
 import React, { useState } from "react";
 import "../styles/Login.scss";
+import { setLogin } from "../Redux/state"; // Import action setLogin
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
+
+    try {
+      const response = await fetch("http://localhost:3002/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const loggedInData = await response.json();
+
+
+      // Kiểm tra xem phản hồi có thành công không
+      
+      if (response.ok) {
+        console.log(loggedInData)
+        dispatch(
+          setLogin({
+            user: loggedInData.user,
+            token: loggedInData.token,
+          })
+        );
+
+        // Điều hướng người dùng đến trang chủ
+        navigate("/");
+      } else {
+        setErrorMessage(loggedInData.message || "Đã xảy ra lỗi khi đăng nhập.");
+      }
+    } catch (error) {
+      setErrorMessage("Đã xảy ra lỗi khi đăng nhập.");
+    }
   };
 
   return (
@@ -25,14 +63,14 @@ const LoginPage = () => {
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Mật khẩu"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
           {errorMessage && <p className="login__error">{errorMessage}</p>}
-          <button type="submit">Login</button>
-          <a href="/register">Don't have an account? Register here</a>
+          <button type="submit">Đăng nhập</button>
+          <a href="/register">Không có tài khoản? Đăng ký tại đây</a>
         </form>
       </div>
     </div>
